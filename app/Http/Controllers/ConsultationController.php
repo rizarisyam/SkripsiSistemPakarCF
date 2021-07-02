@@ -208,7 +208,7 @@ class ConsultationController extends Controller
         array_push($CFGabungan, $CFGab2);
 
         // dd($CFGabungan);
-        dump($cfpakar);
+        // dump($cfpakar);
 
         if (auth()->user()->role == 'user') {
             return view('user.konsultasi.rumus', compact([
