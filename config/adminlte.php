@@ -246,40 +246,78 @@ return [
         //     'url'  => 'admin/blog',
         //     'can'  => 'manage-blog',
         // ],
+        ['header' => "Core"],
         [
             'text'        => 'Kelola Gejala',
             'url'         => 'gejala',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-viruses',
+            // 'icon'        => 'far fa-fw fa-file',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Kelola Himpunan',
+            'url'         => 'himpunan',
+            'icon'        => 'fas fa-hourglass-half',
             // 'label'       => 4,
             // 'label_color' => 'success',
         ],
         [
             'text'        => 'Kelola Penyakit',
             'url'         => 'penyakit',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-shield-virus',
             // 'label'       => 4,
             // 'label_color' => 'success',
         ],
+        // ['header' => "Kelola Aturan"],
         [
-            'text'        => 'Kelola Aturan',
-            'url'         => 'aturan',
-            'icon'        => 'far fa-fw fa-file',
-            // 'label'       => 4,
-            // 'label_color' => 'success',
-        ],
+            'text'    => 'Kelola Aturan',
+            'icon'    => 'fab fa-elementor',
+            'submenu' => [
+                [
+                    'text' => 'Certainty Factor (CF)',
+                    'url'  => 'aturan',
+                    'icon' => 'fas fa-calculator',
+                ],
+                [
+                    'text' => 'Fuzzy Tsukamoto',
+                    'url'  => 'aturan-tsukamoto',
+                    'icon' => 'fas fa-calculator',
+                ],
+            ],
+            ]
+        // [
+        //     'text'        => 'Kelola Aturan',
+        //     'url'         => 'aturan',
+        //     'icon'        => 'far fa-fw fa-file',
+            
+        // ]
+        ,
         [
-            'text'        => 'Konsultasi',
-            'url'         => 'konsultasi',
-            'icon'        => 'far fa-fw fa-file',
-            // 'label'       => 4,
-            // 'label_color' => 'success',
-        ],
+            'text'    => 'Konsultasi',
+            'icon'    => 'fab fa-elementor',
+            'submenu' => [
+                [
+                    'text'        => 'Certainty Factor (CF)',
+                    'url'         => 'konsultasi',
+                    'icon'        => 'fas fa-user-md',
+                    // 'label'       => 4,
+                    // 'label_color' => 'success',
+                ],
+                [
+                    'text'        => 'Fuzzy Tsukamoto',
+                    'url'         => 'konsultasi-tsukamoto',
+                    'icon'        => 'fas fa-user-md',
+                    // 'label'       => 4,
+                    // 'label_color' => 'success',
+                ],
+            ]
+            ],
+        
         [
             'text'        => 'Kelola Pengguna',
             'url'         => 'users',
-            'icon'        => 'far fa-fw fa-file',
-            // 'label'       => 4,
-            // 'label_color' => 'success',
+            'icon'        => 'fas fa-users-cog',
         ],
         // ['header' => 'account_settings'],
         // [

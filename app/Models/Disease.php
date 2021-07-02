@@ -12,4 +12,8 @@ class Disease extends Model
     protected $table = "penyakit";
 
     protected $fillable = ['kode', 'nama'];
+
+    public function aturan_tsukamoto() {
+        return $this->hasOne(AturanTsukamoto::class, 'penyakit_id');
+    }
 }

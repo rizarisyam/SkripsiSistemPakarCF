@@ -33,5 +33,11 @@ Route::get('/petunjuk', [App\Http\Controllers\PageController::class, 'petunjuk']
 Route::get('/informasi', [App\Http\Controllers\PageController::class, 'informasi'])->name('page.informasi');
 
 Route::resource('/users',App\Http\Controllers\UserController::class);
+
+Route::resource('/himpunan', App\Http\Controllers\HimpunanController::class);
+
+Route::resource('/aturan-tsukamoto', App\Http\Controllers\AturanTsukamotoController::class);
+
+Route::resource('/konsultasi-tsukamoto', App\Http\Controllers\KonsultasiTsukamotoController::class);
 Auth::routes();
 
