@@ -53,7 +53,7 @@
             </tbody>
           </table>
 
-          <p class="card-text m-4">Inferensi</p>
+          <h5 class="card-text">Inferensi</h5>
     
           <table class="table">
             <thead class="thead-light">
@@ -63,6 +63,7 @@
                 <th scope="col">Gejala</th>
                 <th scope="col">Nilai</th>
                 <th scope="col">&alpha; predikat</th>
+                <th scope="col">CFRule</th>
                 <th scope="col">Fakta baru</th>
               </tr>
             </thead>
@@ -102,6 +103,7 @@
                     <td>
                         {{min($a_predikat[$index])}}
                     </td>
+                    <td>{{ number_format($cfpakar[$index], 2) }}</td>
                     <td>
                         {{implode("", $fakta_baru[$index])}}
                     </td>
@@ -116,21 +118,24 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">No</th>
+                <th scope="col">Rumus</th>
                 <th scope="col">Nilai</th>
               </tr>
             </thead>
             <tbody>
-                {{-- @foreach ($cf_gabungan as $row)
+                @foreach ($CFGabungan as $row)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <th scope="col">{{ $loop->iteration }}</th>
+                        <td>CF1 + CF2 * (1 - CF1)</td>
+                        <td>{{ number_format($row, 2) }}</td>
                     </tr>
-                @endforeach --}}
+                @endforeach
               
             </tbody>
           </table>
         
 
-          <p class="card-text m-4">Hasil Diagnosa</p>
+          <h5 class="card-text">Hasil Diagnosa</h5>
     
           <table class="table">
             <thead class="thead-light">

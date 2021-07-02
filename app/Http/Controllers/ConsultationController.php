@@ -164,6 +164,8 @@ class ConsultationController extends Controller
         $aturan = Rule::all();
         $cf_user = json_decode($konsultasi->cf_user);
 
+        $cfpakar = [1.0, 0.2, 0.4, 0.6, 0.8, 1.0, 0.2, 0.4];
+
         $a_predikat = [
             [$cf_user[0],$cf_user[1],$cf_user[2],$cf_user[3],$cf_user[4],$cf_user[5]],
             [$cf_user[0],$cf_user[1]],
@@ -174,6 +176,15 @@ class ConsultationController extends Controller
             [$cf_user[6],$cf_user[7]],
             [$cf_user[6],$cf_user[7],$cf_user[8]],
         ];
+
+        $CF01 =doubleval(min([$cf_user[0],$cf_user[1],$cf_user[2],$cf_user[3],$cf_user[4],$cf_user[5]])) * 1.0;
+        $CF02 =doubleval(min([$cf_user[0],$cf_user[1]])) * 0.2;
+        $CF03 =doubleval(min([$cf_user[0],$cf_user[1],$cf_user[2]])) * 0.4;
+        $CF04 =doubleval(min([$cf_user[0],$cf_user[1],$cf_user[2],$cf_user[3]])) * 0.6;
+        $CF05 =doubleval(min([$cf_user[0],$cf_user[1],$cf_user[2],$cf_user[3],$cf_user[4]])) * 0.8;
+        $CF06 =doubleval(min([$cf_user[6],$cf_user[7],$cf_user[8],$cf_user[9]])) * 1.0;
+        $CF07 =doubleval(min([$cf_user[6],$cf_user[7]])) * 0.2;
+        $CF08 =doubleval(min([$cf_user[6],$cf_user[7],$cf_user[8]])) * 0.4;
 
         $fakta_baru = [
             [doubleval(min([$cf_user[0],$cf_user[1],$cf_user[2],$cf_user[3],$cf_user[4],$cf_user[5]])) * 1.0],
@@ -187,10 +198,17 @@ class ConsultationController extends Controller
         ];
 
         // dump(implode("",$fakta_baru[0]));
-        $cf_gabungan = [
-            [floatval(implode("",$fakta_baru[0])+implode("",$fakta_baru[1])+implode("",$fakta_baru[2])+implode("",$fakta_baru[3])+implode("",$fakta_baru[4])+implode("",$fakta_baru[5])) * (1 - max([implode("",$fakta_baru[0]),implode("",$fakta_baru[1]),implode("",$fakta_baru[2]),implode("",$fakta_baru[3]),implode("",$fakta_baru[4]),implode("",$fakta_baru[5]]))],
-            [floatval(implode("",$fakta_baru[5])+implode("",$fakta_baru[6])+implode("",$fakta_baru[7]) * (1 - max([implode("",$fakta_baru[5]),implode("",$fakta_baru[6]),implode("",$fakta_baru[7])]))],
-        ];
+        // dump("{$CF01},{$CF02},{$CF03},{$CF04},{$CF05}");
+        // dump(strtr($CF04,$CF05,$CF06));
+        $CFGab1 = ($CF01 + $CF02 + $CF03 + $CF04 + $CF05) * (1 - max([$CF01,$CF02,$CF03,$CF04,$CF05]));
+        $CFGab2 = ($CF06 + $CF07 + $CF08) * (1 - max([$CF06,$CF07,$CF08]));
+        
+        $CFGabungan = array();
+        array_push($CFGabungan, $CFGab1);
+        array_push($CFGabungan, $CFGab2);
+
+        // dd($CFGabungan);
+        dump($cfpakar);
 
         if (auth()->user()->role == 'user') {
             return view('user.konsultasi.rumus', compact([
@@ -201,6 +219,8 @@ class ConsultationController extends Controller
                 'cf_user', 
                 'a_predikat',
                 'fakta_baru',
+                'CFGabungan',
+                'cfpakar'
                 ]));
 
         }
