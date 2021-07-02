@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+    // return redirect()->route('login');
 });
 
 Route::resource('/gejala', App\Http\Controllers\SymptomController::class);
@@ -24,8 +25,13 @@ Route::resource('/penyakit', App\Http\Controllers\DiseaseController::class);
 Route::resource('/aturan', App\Http\Controllers\RuleController::class);
 
 Route::resource('/konsultasi', App\Http\Controllers\ConsultationController::class);
+Route::get('/rumus/{id}', [\App\Http\Controllers\ConsultationController::class, 'rumus'])->name("konsul.rumus");
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/petunjuk', [App\Http\Controllers\PageController::class, 'petunjuk'])->name('page.petunjuk');
+Route::get('/informasi', [App\Http\Controllers\PageController::class, 'informasi'])->name('page.informasi');
+
+Route::resource('/users',App\Http\Controllers\UserController::class);
 Auth::routes();
 

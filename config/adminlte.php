@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'SISTEM PAKAR ISPA',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>Sitem Pakar</b> ISPA',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'vendor/adminlte/dist/img/logo.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -270,6 +270,13 @@ return [
         [
             'text'        => 'Konsultasi',
             'url'         => 'konsultasi',
+            'icon'        => 'far fa-fw fa-file',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Kelola Pengguna',
+            'url'         => 'users',
             'icon'        => 'far fa-fw fa-file',
             // 'label'       => 4,
             // 'label_color' => 'success',

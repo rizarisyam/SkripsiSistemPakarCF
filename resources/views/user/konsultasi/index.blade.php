@@ -37,11 +37,16 @@
                         <a href="{{ route('konsultasi.show', $row->id) }}" class="btn-secondary">
                             <button type="button" class="btn btn-secondary">Detail</button>
                         </a>
-                        <form action="{{ route('konsultasi.destroy', $row->id) }}" method="POST" class="btn-secondary">
+
+                        <a href="{{ route('konsul.rumus', $row->id) }}" class="btn-secondary">
+                            <button type="button" class="btn btn-secondary">Rumus</button>
+                        </a>
+                        
+                        {{-- <form action="{{ route('konsultasi.destroy', $row->id) }}" method="POST" class="btn-secondary">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-secondary">Hapus</button>
-                        </form>
+                        </form> --}}
                         
                         
                     </div>

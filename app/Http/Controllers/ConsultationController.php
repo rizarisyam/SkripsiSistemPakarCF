@@ -113,6 +113,10 @@ class ConsultationController extends Controller
         $gejala = Symptom::all();
         $penyakit = Disease::all();
         $konsultasi = Consultation::find($id);
+        if (auth()->user()->role == 'user') {
+            return view('user.konsultasi.show', compact(['konsultasi', 'gejala', 'penyakit']));
+
+        }
         return view('konsultasi.show', compact(['konsultasi', 'gejala', 'penyakit']));
     }
 
@@ -150,5 +154,56 @@ class ConsultationController extends Controller
         $konsultasi = Consultation::find($id);
         $konsultasi->delete();
         return redirect()->route('konsultasi.index');
+    }
+
+    public function rumus($id)
+    {
+        $gejala = Symptom::all();
+        $penyakit = Disease::all();
+        $konsultasi = Consultation::find($id);
+        $aturan = Rule::all();
+        $cf_user = json_decode($konsultasi->cf_user);
+
+        $a_predikat = [
+            [$cf_user[0],$cf_user[1],$cf_user[2],$cf_user[3],$cf_user[4],$cf_user[5]],
+            [$cf_user[0],$cf_user[1]],
+            [$cf_user[0],$cf_user[1],$cf_user[2]],
+            [$cf_user[0],$cf_user[1],$cf_user[2],$cf_user[3]],
+            [$cf_user[0],$cf_user[1],$cf_user[2],$cf_user[3],$cf_user[4]],
+            [$cf_user[6],$cf_user[7],$cf_user[8],$cf_user[9]],
+            [$cf_user[6],$cf_user[7]],
+            [$cf_user[6],$cf_user[7],$cf_user[8]],
+        ];
+
+        $fakta_baru = [
+            [doubleval(min([$cf_user[0],$cf_user[1],$cf_user[2],$cf_user[3],$cf_user[4],$cf_user[5]])) * 1.0],
+            [doubleval(min([$cf_user[0],$cf_user[1]])) * 0.2],
+            [doubleval(min([$cf_user[0],$cf_user[1],$cf_user[2]])) * 0.4],
+            [doubleval(min([$cf_user[0],$cf_user[1],$cf_user[2],$cf_user[3]])) * 0.6],
+            [doubleval(min([$cf_user[0],$cf_user[1],$cf_user[2],$cf_user[3],$cf_user[4]])) * 0.8],
+            [doubleval(min([$cf_user[6],$cf_user[7],$cf_user[8],$cf_user[9]])) * 1.0],
+            [doubleval(min([$cf_user[6],$cf_user[7]])) * 0.2],
+            [doubleval(min([$cf_user[6],$cf_user[7],$cf_user[8]])) * 0.4],
+        ];
+
+        // dump(implode("",$fakta_baru[0]));
+        $cf_gabungan = [
+            [floatval(implode("",$fakta_baru[0])+implode("",$fakta_baru[1])+implode("",$fakta_baru[2])+implode("",$fakta_baru[3])+implode("",$fakta_baru[4])+implode("",$fakta_baru[5])) * (1 - max([implode("",$fakta_baru[0]),implode("",$fakta_baru[1]),implode("",$fakta_baru[2]),implode("",$fakta_baru[3]),implode("",$fakta_baru[4]),implode("",$fakta_baru[5]]))],
+            [floatval(implode("",$fakta_baru[5])+implode("",$fakta_baru[6])+implode("",$fakta_baru[7]) * (1 - max([implode("",$fakta_baru[5]),implode("",$fakta_baru[6]),implode("",$fakta_baru[7])]))],
+        ];
+
+        if (auth()->user()->role == 'user') {
+            return view('user.konsultasi.rumus', compact([
+                'konsultasi',
+                'gejala', 
+                'penyakit', 
+                'aturan',
+                'cf_user', 
+                'a_predikat',
+                'fakta_baru',
+                ]));
+
+        }
+        return view('');
     }
 }

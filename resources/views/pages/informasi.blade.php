@@ -8,8 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>SISTEM PAKAR ISPA</title>
+    <title>Hello, world!</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,22 +19,22 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav d-flex justify-content-end" style="width: 100%">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('page.petunjuk') }}">Petunjuk</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('page.informasi') }}">Informasi</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalaboutme">About me</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">Register</a>
-              </li>
-            </ul>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('page.petunjuk') }}">Petunjuk</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('page.informasi') }}">Informasi</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalaboutme">About me</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('register') }}">Register</a>
+                </li>
+              </ul>
           </div>
         </div>
       </nav>
@@ -70,41 +69,49 @@
     </div>
   </div>
 
-
-      <div class="" style="position: relative">
-        <img src="{{ asset('img/fusion-medical-animation-rnr8D3FNUNY-unsplash.jpg')}}" style="background-size: cover; height: 88vh; width: 100%; object-fit: cover;" alt="">
-        <div style="position: absolute; top: 20%; right: 0; margin: 3rem 4rem;">
-
-            <div class="card shadow">
-                <div class="card-body" style="padding: 2rem">
-
-                    <h5 style="text-align: center; margin-bottom: 1rem;">Form Login</h5>
-                    <form action="{{ route('login') }}" method="post">
-                        {{ csrf_field() }}
-                
-                        {{-- Email field --}}
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-at"></i></span>
-                            <input type="text" name="email" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                          </div>
-
-                          <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-unlock-alt"></i></span>
-                            <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
-                          </div>
-                        
-                          <div class="">
-                              <button type="submit" class="btn btn-primary">Login</button>
-                          </div>
-                
-                    </form>
-                </div>
-            </div>
+  <div class="container">
+    <div class="card">
+        <div class="card-header">
+          Informasi ISPA
         </div>
-    </div>
-    <footer class="bg-light.bg-gradient d-flex justify-content-center">
-        <p>Copyright &copy; Riza Nurfat Risyam | {{ date('Y') }}</p>
-    </footer>
+        <div class="card-body">
+          <p>
+                Infeksi Saluran Pernapasan Akut (ISPA) Infeksi akut yang menyerang
+            salah satu bagian/lebih dari saluran napas mulai hidung sampai alveoli termasuk
+            adneksanya (sinus, rongga telinga tengah, pleura) (WHO, 2011). ISPA merupakan
+            penyakit umum yang terjadi pada masyarakat dan sering dianggap biasa atau tidak
+            membahayakan. ISPA adalah penyakit saluran pernapasan atas atau bawah,
+            biasanya menular yang dapat menimbulkan berbagai spektrum penyakit yang
+            berkisar dari penyakit tanpa gejala sampai penyakit yang parah dan mematikan,
+            tergantung pada patogen penyebabnya, faktor lingkungan dan faktor pejamu.
+            </p>
+            <p>Sekelompok penyakit yang termasuk ISPA adalah pneumonia, influenza, dan
+                pernapasan syncytial virus (RSV). Infeksi saluran pernapasan akut disebabkan
+                oleh virus atau bakteri.). ISPA merupakan singkatan dari Infeksi Saluran
+                Pernapasan Akut. ISPA meliputi saluran pernapasan bagian atas dan saluran
+                pernapasan bagian bawah. ISPA adalah infeksi saluran pernapasan yang
+                berlangsung sampai 14 hari, pada organ pernapasan berupa hidung sampai
+                gelembung paru, beserta organ-organ disekitarnya seperti : sinus, ruang telinga
+                tengah dan selaput paru.</p>
+
+            <ul>
+                <p>Berikut gejala-gejala infeksi saluran pernapasan bagian bawah atau atas antara lain</p>
+                <li>Kamacetan, baik di sinus, hidung atau paru-paru</li>
+                <li>Hidung beringus</li>
+                <li>Batuk</li>
+                <li>Sakit tenggorokkan</li>
+                <li>Pegal-pegal</li>
+                <li>Kelelahan</li>
+                <li>Batuk ringan</li>
+                <li>Sakit kepala</li>
+            </ul>
+        </div>
+
+        <ul>
+            <li>Sumber : https://tirto.id/kenali-gejala-penyebab-hingga-pengobatan-penyakit-ispa-eeQv</li>
+        </ul>
+      </div>
+  </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

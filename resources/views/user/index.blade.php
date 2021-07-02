@@ -10,47 +10,24 @@
 @stop
 
 @section('content')
-<div class="container">
-    <div class="row">
-    <div class="col-md-3">
-      <div class="card-counter primary">
-        <i class="fas fa-vial"></i>
-        <span class="count-numbers">{{$gejala->count()}}</span>
-        <span class="count-name">Gejala</span>
-      </div>
-    </div>
+<div class="container p-3">
+    <div class="card">
+        <h5 class="card-header">Informasi mengenai penyakit ISPA</h5>
+        <div class="card-body">
+          <h5 class="card-title">ISPA</h5>
+          <div class="mb-3 mt-3">
+              <img style="width: 30%" src="https://res.cloudinary.com/dk0z4ums3/image/upload/v1592449361/attached_image/ispa-0-alodokter.jpg" alt="">
+          </div>
+          <p class="card-text">Infeksi saluran pernapasan akut atau ISPA adalah infeksi di saluran pernapasan, yang menimbulkan gejala batuk, pilek, disertai dengan demam. ISPA sangat mudah menular dan dapat dialami oleh siapa saja, terutama anak-anak dan lansia.</p>
+          <p class="card-text">Sesuai dengan namanya, ISPA akan menimbulkan peradangan pada saluran pernapasan, mulai dari hidung hingga paru-paru. Kebanyakan ISPA disebabkan oleh virus, sehingga dapat sembuh dengan sendirinya tanpa pengobatan khusus dan antibiotik.
+            ISPA dapat menyerang saluran napas atas maupun saluran napas bawah. Beberapa penyakit yang termasuk ke dalam ISPA adalah common cold, sinusitis, radang tenggorokan akut, laringitis akut, pneumonia, dan COVID-19.
 
-    <div class="col-md-3">
-      <div class="card-counter danger">
-        <i class="fas fa-disease"></i>
-        <span class="count-numbers">{{$penyakit->count()}}</span>
-        <span class="count-name">Penyakit</span>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="card-counter success">
-        <i class="fas fa-brain"></i>
-        <span class="count-numbers">{{$aturan->count()}}</span>
-        <span class="count-name">Aturan</span>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="card-counter info">
-        <i class="fa fa-users"></i>
-        <span class="count-numbers">{{$users->count()}}</span>
-        <span class="count-name">Pengguna</span>
-      </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card-counter info">
-            <i class="fas fa-notes-medical"></i>
-          <span class="count-numbers">{{$konsul->count() }}</span>
-          <span class="count-name">Konsultasi</span>
+            Penularan virus atau bakteri penyebab ISPA dapat terjadi melalui kontak dengan percikan air liur orang yang terinfeksi. Virus atau bakteri dalam percikan liur akan menyebar melalui udara, masuk ke hidung atau mulut orang lain.
+            
+            Selain kontak langsung dengan percikan liur penderita, virus juga dapat menyebar melalui sentuhan dengan benda yang terkontaminasi, atau berjabat tangan dengan penderita.
+          </p>
         </div>
       </div>
-  </div>
 </div>
 @stop
 
