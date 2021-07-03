@@ -25,7 +25,7 @@ Route::resource('/penyakit', App\Http\Controllers\DiseaseController::class);
 Route::resource('/aturan', App\Http\Controllers\RuleController::class);
 
 Route::resource('/konsultasi', App\Http\Controllers\ConsultationController::class);
-Route::get('/rumus/{id}', [\App\Http\Controllers\ConsultationController::class, 'rumus'])->name("konsul.rumus");
+Route::get('/konsultasi/rumus/{id}', [\App\Http\Controllers\ConsultationController::class, 'rumus'])->name("konsul.rumus");
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -39,5 +39,7 @@ Route::resource('/himpunan', App\Http\Controllers\HimpunanController::class);
 Route::resource('/aturan-tsukamoto', App\Http\Controllers\AturanTsukamotoController::class);
 
 Route::resource('/konsultasi-tsukamoto', App\Http\Controllers\KonsultasiTsukamotoController::class);
+Route::get('/konsultasi-tsukamoto/rumus/{id}', [\App\Http\Controllers\KonsultasiTsukamotoController::class, 'rumus'])->name("konsulTsu.rumus");
+
 Auth::routes();
 

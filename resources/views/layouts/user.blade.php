@@ -66,9 +66,14 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
+                            <div class="sb-sidenav-menu-heading">Konsultasi</div>
                             <a class="nav-link" href="{{ route('konsultasi.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Konsultasi
+                                Certainty Factor (CF)
+                            </a>
+                            <a class="nav-link" href="{{ route('konsultasi-tsukamoto.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Fuzzy Tsukamoto
                             </a>
                             <a class="nav-link" href="{{ route('page.petunjuk') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
