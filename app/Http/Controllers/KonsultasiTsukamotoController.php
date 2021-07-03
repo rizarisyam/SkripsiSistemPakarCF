@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AturanTsukamoto;
+use App\Models\Disease;
 use App\Models\KonsultasiTsukamoto;
 use App\Models\Symptom;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class KonsultasiTsukamotoController extends Controller
      */
     public function index()
     {
-        return view('tsukamoto.konsultasi.index');
+        $konsulTsu = KonsultasiTsukamoto::all();
+        return view('tsukamoto.konsultasi.index', compact(['konsulTsu']));
     }
 
     /**
@@ -81,7 +83,7 @@ class KonsultasiTsukamotoController extends Controller
 
         $aturan = AturanTsukamoto::with(['himpunan', 'penyakit'])->get();
 
-        dump($aturan);
+        // dump($aturan);
         foreach($aturan as $row){
             $temp = array();
             // dump($row->kode);
@@ -185,16 +187,50 @@ class KonsultasiTsukamotoController extends Controller
             $inferensi[] = $temp;
         }
 
-        dump($inferensi);
+        // dump($inferensi);
+
+        $predikat = array();
+        $z = array();
 
         foreach($inferensi as $index=>$row) {
-            dump(min($row));
+            $predikat[] = min($row);
             if ($index <= 20) {
-                dump((60 - (min($row)) * (60-40)));
-            } else {
-                dump( ($row * (60-40)) + 40 );
+                $result = (60 - (min($row) * (60-40)) );
+                $z[] = $result;
+            }
+            else {
+                $result = (min($row) * (60-40)) + 40;
+                $z[] = $result;
             }
         }
+
+        // dump($predikat);
+        // dump($z);
+
+        // a predikat x zi
+        $atas = 0;
+
+        // jumlah a predikat
+        $bawah = 0;
+
+        foreach($predikat as $index=>$p) {
+            $atas += ($p * $z[$index]);
+            $bawah += $p;
+        }
+
+        $defuzzifikasi = $atas / $bawah;
+
+        // dump($atas);
+        // dump($bawah);
+        // dump($defuzzifikasi);
+
+        $konsultasiTsukamoto = KonsultasiTsukamoto::create([
+            'user_id' => $request->input('user_id'),
+            'nilai' => $defuzzifikasi,
+            'fuzzy_user' => json_encode($request->input('fuzzy_user'))
+        ]);
+
+        return redirect()->route('konsultasi-tsukamoto.index');
     }
 
     /**
@@ -203,9 +239,17 @@ class KonsultasiTsukamotoController extends Controller
      * @param  \App\Models\KonsultasiTsukamoto  $konsultasiTsukamoto
      * @return \Illuminate\Http\Response
      */
-    public function show(KonsultasiTsukamoto $konsultasiTsukamoto)
+    public function show($id)
     {
-        //
+        $konsultasiTsukamoto = KonsultasiTsukamoto::find($id);
+        $gejala = Symptom::all();
+        $penyakit = Disease::all();
+
+        return view('tsukamoto.konsultasi.show', compact([
+            'konsultasiTsukamoto',
+            'gejala',
+            'penyakit',
+        ]));
     }
 
     /**

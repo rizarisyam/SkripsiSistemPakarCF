@@ -26,7 +26,27 @@
       </tr>
     </thead>
     <tbody>
-        
+        @foreach ($konsulTsu as $row)
+            <tr>
+                <th scope="col">{{ $loop->iteration }}</th>
+                <td>{{ $row->user->name }}</td>
+                <td>{{ $row->created_at }}</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <a href="{{ route('konsultasi-tsukamoto.show', $row->id) }}" class="btn-secondary">
+                            <button type="button" class="btn btn-secondary">Detail</button>
+                        </a>
+                        <form action="{{ route('konsultasi-tsukamoto.destroy', $row->id) }}" method="POST" class="btn-secondary">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-secondary">Hapus</button>
+                        </form>
+                        
+                        
+                    </div>
+                </td>
+            </tr>
+        @endforeach
         
         
     </tbody>

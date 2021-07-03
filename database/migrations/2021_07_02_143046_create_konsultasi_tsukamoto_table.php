@@ -15,6 +15,10 @@ class CreateKonsultasiTsukamotoTable extends Migration
     {
         Schema::create('konsultasi_tsukamoto', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->text('nilai')->nullable();
+            $table->text('fuzzy_user');
             $table->timestamps();
         });
     }
