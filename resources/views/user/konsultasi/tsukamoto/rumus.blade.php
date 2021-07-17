@@ -150,24 +150,37 @@
       <table class="table">
         <thead class="thead-light">
           <tr>
-            <th scope="col">No</th>
+            {{-- <th scope="col">No</th> --}}
             <th scope="col">Diagnosa</th>
             <th scope="col">Nilai</th>
           </tr>
         </thead>
         <tbody>
-            @foreach ($penyakit as $index=>$row)
-                <tr>
-                    <th scope="col">{{ $loop->iteration }}</th>
-                    <td>{{ $row->nama }}</td>
-                    <td>{{ number_format($konsultasiTsukamoto->nilai, 2) }}</td>
-                </tr>
-                @if ($index == 0)
-                    @php
-                        break;
-                    @endphp
-                @endif
-            @endforeach
+            <tr>
+                {{-- <th scope="col">{{ $loop->iteration }}</th> --}}
+                {{-- <td>{{ $konsultasiTsukamoto->nilai }}</td> --}}
+                <td>
+                    @if ($konsultasiTsukamoto->nilai > 0 && $konsultasiTsukamoto->nilai < 60)
+                        {{"ISPA RINGAN"}}                            
+                    @elseif($konsultasiTsukamoto->nilai > 40 && $konsultasiTsukamoto->nilai < 100)
+                        {{"ISPA BERAT"}}
+                    @endif
+                </td>
+                <td>{{ number_format($konsultasiTsukamoto->nilai, 2) }}</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <h6>Solusi :</h6>
+                    <ul>
+                        <li>Memperbanyak istirahat dan konsumsi air putih untuk mengencerkan dahak, sehingga lebih mudah untuk dikeluarkan.</li>
+                        <li>Mengonsumsi minuman lemon hangat atau madu untuk membantu meredakan batuk.
+                        </li>
+                        <li>Berkumur dengan air hangat yang diberi garam, jika mengalami sakit tenggorokan.</li>
+                        <li>Menghirup uap dari semangkuk air panas yang telah dicampur dengan minyak kayu putih atau mentol untuk meredakan hidung yang tersumbat.</li>
+                        <li>Memposisikan kepala lebih tinggi ketika tidur dengan menggunakan bantal tambahan, untuk melancarkan pernapasan.</li>
+                    </ul>
+                </td>
+            </tr>
          
         </tbody>
       </table>

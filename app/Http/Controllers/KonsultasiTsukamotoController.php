@@ -6,7 +6,9 @@ use App\Models\AturanTsukamoto;
 use App\Models\Disease;
 use App\Models\KonsultasiTsukamoto;
 use App\Models\Symptom;
+use Exception;
 use Illuminate\Http\Request;
+
 
 class KonsultasiTsukamotoController extends Controller
 {
@@ -71,11 +73,21 @@ class KonsultasiTsukamotoController extends Controller
                 array_push($temp, 0);
             }
     
-            if($row < 30 || $row > 50) {
+            // if($row < 30 || $row > 50) {
+            //     array_push($temp, 0);
+            // }elseif($row < 30 || $row < 50) {
+            //     array_push($temp, ($row - 30) / (50 - 30));
+            // } elseif($row < 50 || $row < 70) {
+            //     array_push($temp, (70 - $row)/(70-30));
+            // }elseif($row == 50){
+            //     array_push($temp, 1);
+            // }
+
+            if($row < 30 || $row > 70) {
                 array_push($temp, 0);
-            }elseif($row < 30 || $row < 50) {
+            }elseif($row > 30 && $row < 50) {
                 array_push($temp, ($row - 30) / (50 - 30));
-            } elseif($row < 50 || $row < 70) {
+            } elseif($row > 50 && $row < 70) {
                 array_push($temp, (70 - $row)/(70-30));
             }elseif($row == 50){
                 array_push($temp, 1);
@@ -83,13 +95,15 @@ class KonsultasiTsukamotoController extends Controller
     
             if($row < 50) {
                 array_push($temp, 0);
-            }elseif($row < 70) {
-                array_push($temp, ($row - 50)/(50-70));
-            }else {
+            }elseif($row > 50 && $row < 70) {
+                array_push($temp, ($row - 50)/(70 - 50));
+            }elseif($row > 70) {
                 array_push($temp, 1);
             }
             $fuzzyfikasi[] = $temp;
         }
+
+        // dump($fuzzyfikasi);
 
         // Inferensi
         $inferensi = array();
@@ -233,10 +247,16 @@ class KonsultasiTsukamotoController extends Controller
             $bawah += $p;
         }
 
-        $defuzzifikasi = $atas / $bawah;
+        
 
         // dump($atas);
         // dump($bawah);
+
+        if ($atas > 0 && $bawah > 0) {
+            $defuzzifikasi = $atas / $bawah;
+        } else {
+            throw new Exception('Division by zero.');
+        }
         // dump($defuzzifikasi);
 
         $konsultasiTsukamoto = KonsultasiTsukamoto::create([
@@ -331,25 +351,27 @@ class KonsultasiTsukamotoController extends Controller
                 array_push($temp, 0);
             }
     
-            if($row < 30 || $row > 50) {
+            if($row < 30 || $row > 70) {
                 array_push($temp, 0);
-            }elseif($row < 30 || $row < 50) {
+            }elseif($row > 30 && $row < 50) {
                 array_push($temp, ($row - 30) / (50 - 30));
-            } elseif($row < 50 || $row < 70) {
+            } elseif($row > 50 && $row < 70) {
                 array_push($temp, (70 - $row)/(70-30));
             }elseif($row == 50){
                 array_push($temp, 1);
             }
-    
+
             if($row < 50) {
                 array_push($temp, 0);
-            }elseif($row < 70) {
-                array_push($temp, ($row - 50)/(50-70));
-            }else {
+            }elseif($row > 50 && $row < 70) {
+                array_push($temp, ($row - 50)/(70 - 50));
+            }elseif($row > 70) {
                 array_push($temp, 1);
             }
+            
             $fuzzyfikasi[] = $temp;
         }
+        // dump($fuzzyfikasi);
 
         // dump($aturanTsu);
          // Inferensi

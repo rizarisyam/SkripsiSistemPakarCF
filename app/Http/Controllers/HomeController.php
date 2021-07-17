@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AturanTsukamoto;
 use App\Models\Consultation;
 use App\Models\Disease;
+use App\Models\KonsultasiTsukamoto;
 use App\Models\Rule;
 use App\Models\Symptom;
 use App\Models\User;
@@ -32,10 +34,12 @@ class HomeController extends Controller
             $gejala = Symptom::all();
             $penyakit = Disease::all();
             $aturan = Rule::all();
+            $aturanTsu = AturanTsukamoto::all();
             $users = User::all();
             $konsul = Consultation::all();
+            $konsulTsu = KonsultasiTsukamoto::all();
 
-            return view('home', compact(['gejala', 'penyakit', 'aturan', 'users', 'konsul']));
+            return view('home', compact(['gejala', 'penyakit', 'aturan', 'users', 'konsul', 'aturanTsu','konsulTsu']));
         } else {
             $gejala = Symptom::all();
             $penyakit = Disease::all();

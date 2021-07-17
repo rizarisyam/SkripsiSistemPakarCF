@@ -45,18 +45,25 @@
           </tr>
         </thead>
         <tbody>
-            @foreach ($penyakit as $index=>$row)
+            {{-- @foreach ($penyakit as $index=>$row) --}}
                 <tr>
                     <th scope="col">{{ $loop->iteration }}</th>
-                    <td>{{ $row->nama }}</td>
+                    <td>{{ $konsultasiTsukamoto->nilai }}</td>
+                    <td>
+                        @if ($konsultasiTsukamoto->nilai > 0 && $konsultasiTsukamoto->nilai < 60)
+                            {{"ISPA RINGAN"}}                            
+                        @elseif($konsultasiTsukamoto->nilai > 40 && $konsultasiTsukamoto->nilai < 100)
+                            {{"ISPA BERAT"}}
+                        @endif
+                    </td>
                     <td>{{ $konsultasiTsukamoto->nilai }}</td>
                 </tr>
-                @if ($index == 0)
+                {{-- @if ($index == 0)
                     @php
                         break;
                     @endphp
-                @endif
-            @endforeach
+                @endif --}}
+            {{-- @endforeach --}}
          
         </tbody>
       </table>
