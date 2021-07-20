@@ -89,7 +89,7 @@ class ConsultationController extends Controller
         array_push($CFTotal, $CFcombine1);
         array_push($CFTotal, $CFcombine2);
 
-        dump($CFTotal);
+        // dump($CFTotal);
 
         $konsultasi = Consultation::create([
             'user_id' => $request->input('user_id'),
